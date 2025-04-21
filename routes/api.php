@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/api', [\App\Http\Controllers\API\GeneralCOntroller::class, 'getUserProfile'])->name('api.user.profile');;
+Route::middleware('auth:sanctum')->get('/api', [\App\Http\Controllers\API\GeneralCOntroller::class, 'test'])->name('api.test');;
 
 
