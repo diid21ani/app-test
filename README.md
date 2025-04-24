@@ -1,66 +1,66 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel + Docker – Technical Test
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 🔧 How to run
 
-## About Laravel
+```bash
+cp .env.example .env
+docker-compose up --build
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Then access: [http://localhost:8000](http://localhost:8000)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📚 API Documentation
+API Application Setup
+---------------------------------------------------------------------------------------------------
+1. Installed Laravel basic setup via composer.
+2. Installed laravel Breeze via composer install "composer require laravel/breeze --dev" and "php artisan breeze:install".
+3. Installed passport via "composer require laravel/passport" and configured it via "php artisan passport:install", and migrated the essential migration.
+4. Added 'api' guards in config/auth.php file and genetated passport key php artisan passport:keys.
+5. added PASSPORT_PRIVATE_KEY and PASSPORT_PUBLIC_KEY in .env file.
+6. Created API AuthController.php file to handle login, profile and logout endpoint.
+7. setup added files in sanctom.php and passport.php files in config directory.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+7. Some files such as ProfileController.php in controllers dir and User.php in Models created while set the project
 
-## Learning Laravel
+## Virtual Host on local machine
+I created and configurred virtual url for application which run app automatic with http://test-app.test URL, I made changes in window "host" and apache "httpd-vhosts.conf" file.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Containarization  through Docker
+I used following steps to create docker files and docker image creation
+1. Initialize docker in root folder via "docker init" command, this commands generated required files such as "Dockerfile","compose.yml",".dockerignore" etc files
+2. run the "docker compose up --build" command to create build, docker image and run container, docker push to push images over docker Hub.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+Please describe the endpoints you have implemented in the table below:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+| Method | Endpoint         | Description                                         | Requires Auth  |
+|--------|------------------|-----------------------------------------------------|--------------- |
+| POST   | /api/login       | The login API endpoint authenticate client request  | ❌             |
+|        |                  |  and generate new access token key and return in the|                |
+|        |                  | response                                            |                |
+|        |                  |                                                     |                |
+| GET    | /api/profile     | This API endpoint is a protected GET URL, and can   | ✅             |
+                            | access with token after login successfull           |                |
+| POST   | /api/logout      | This API endpoint is a protected POST methos, anc   | ✅             |
+|        |                  | will be access with token after login successfull   |                |
+|--------|------------------|-----------------------------------------------------|-----------------|
 
-### Premium Partners
+## Setup and configure the application from github repository
+1. clone the repository "https://github.com/diid21ani/app-test.git" into htdocs folder
+2. create db name 'blank' in mysql database.
+3. run composer update or composer install command to updated dependencies
+4. run 'php artisan migrate' command to migrate db tables.
+5. rename .env.example file with .env
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+After thse project will be set, if you want create virtual host, you can create as i explained above. Use postman to check the API
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+## 🧪 Tests
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+If you implemented any tests, describe how to run them below:
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan test
+```
